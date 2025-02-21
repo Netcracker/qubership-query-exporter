@@ -4,7 +4,6 @@ on: delete
 env:
   COMPONENT_NAME: qubership-query-exporter
   TAG_NAME: ${{ github.event.ref }}
-  GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
 
 jobs:
   delete:
@@ -25,10 +24,10 @@ jobs:
         with:
           component-name: ${{ env.COMPONENT_NAME }}
           component-tag: ${{ env.TAG_NAME }}
-          access-token: ${{ secrets.GH_ACCESS_TOKEN }}
+          access-token:  ${{secrets.GITHUB_TOKEN}}
       - uses: actions/delete-package-versions@v5
         with: 
           package-name: ${{ env.COMPONENT_NAME }}
           package-type: 'container'
-          package-version-ids: ${{ env.IDS_FOR_DELETE }}
-        if: ${{ env.IDS_FOR_DELETE != '' }}
+          package-version-ids: ${{ steps.get-ids-for-delete.outputs.ids-for-delete }}
+        if: ${{ steps.get-ids-for-delete.outputs.ids-for-delete }}
