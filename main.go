@@ -46,7 +46,7 @@ import (
 var (
 	printVersion             = flag.Bool("version", false, "Print the query-exporter version and exit")
 	addr                     = flag.String("listen-address", ":8080", "The address to listen (port) for HTTP requests")
-	configPath               = flag.String("config-path", utils.GetEnv("github.com/Netcracker/qubership-query-exporter_EXTEND_QUERY_PATH", "config.yaml"), "Path to the yaml configuration")
+	configPath               = flag.String("config-path", utils.GetEnv("QUERY_EXPORTER_EXTEND_QUERY_PATH", "config.yaml"), "Path to the yaml configuration")
 	histSummarize            = flag.Bool("histogram-sum", utils.GetEnvBool("HISTOGRAM_SUMMARIZE", true), "If histogram values should be summarized")
 	excQueriesFromEnv        = flag.String("excluded-queries", utils.GetEnv("EXCLUDED_QUERIES", ""), "Excluded queries list")
 	appConfig                *config.Config
