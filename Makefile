@@ -1,5 +1,9 @@
 DOCKER_FILE := build/Dockerfile
 
+ifndef TAG_ENV
+override TAG_ENV = local
+endif
+
 ifndef DOCKER_NAMES
 override DOCKER_NAMES = "ghcr.io/netcracker/qubership-query-exporter:${TAG_ENV}"
 endif
